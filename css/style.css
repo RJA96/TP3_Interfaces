@@ -1,0 +1,5 @@
+a:hover {
+    transition: color .35s ease-in;}
+/*hay que declarar un valor inicial y luego cambiarlo con hover, ej
+a y en otro aparte a:hover;*/
+/*para el random punto 2 guardar en js distintas animaciones y tirar random
