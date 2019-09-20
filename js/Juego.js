@@ -12,6 +12,6 @@ export class Juego {
         let img = new Image();
         img.crossOrigin = "Anonymous";
         img.src = imgsrc;
-        this.fondo = new Fondo(0, 0, canvas.width, canvas.height, ctx, img);
+        this.fondo = new Fondo(canvas.width, 0, canvas.width, canvas.height, ctx, img);
     }
 }
