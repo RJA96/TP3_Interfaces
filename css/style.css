@@ -13,15 +13,15 @@
     z-index: 2;
     transform-origin: top;
     transform: scale(0.15,0.15) translateX(-1600px) translateY(-1000px);;
-    animation: playXrun 1s steps(4) infinite, playYrun 2s steps(2) infinite;
+    animation: playXrun 0.5s steps(4) infinite, playYrun 2s steps(2) infinite;
 }
   canvas {
     top: 0;
     left: 0;
     border: 1px solid black;
     z-index: 1;
-    width: 600px;
-    height: 360px;
+    width: 480px;
+    height: 270px;
     z-index: 1;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

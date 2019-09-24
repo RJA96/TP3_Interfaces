@@ -16,13 +16,17 @@ import { SpriteSheet } from "./SpriteSheet.js";
     })();
 
     function iniciar() {
-        game.iniciar("img/background.png");
+        game.añadricapa("img/background.png",1);
+
         animate()
     }
 
     function animate() {
         requestAnimFrame(animate);
-        game.fondo.draw();
+        for (let i = 0; i < game.capas.length; i++) {
+            game.capas[i].draw();
+        }
+       // game.fondo.draw();
 
     }
 
