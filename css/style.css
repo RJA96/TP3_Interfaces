@@ -7,12 +7,14 @@
     left: 5px;
   }
 .pj{
-  position: absolute;
+    position: absolute;
     background:url(../img/run.png);
+      top: -160px;
+  left: -200px;
     width: 579px;
     height: 763px;
     z-index: 3;
-    transform: scale(0.1,0.1) translateX(-2000px) translateY(-1900px);;
+    transform: scale(0.12,0.12);
     animation: playXrun 0.5s steps(4) infinite, playYrun 1s steps(2) infinite;
 }
 .fondoback{
@@ -34,7 +36,7 @@
   border: solid;
   z-index: 1;
   background:url(../img/parallax/3.png);
-  animation: fondo 24s steps(1500)infinite;
+  animation: fondo 24s linear infinite;
 
 }
 .fondo2{
@@ -46,7 +48,7 @@
   border: solid;
   z-index: 1;
   background:url(../img/parallax/2.png);
-  animation: fondo 20s steps(1500)infinite;
+  animation: fondo 20s linear infinite;
 
 }
 .fondo1{
@@ -58,7 +60,7 @@
   border: solid;
   z-index: 1;
   background:url(../img/parallax/1.png);
-  animation: fondo 5s steps(1500) infinite;
+  animation: fondo 5s linear infinite;
 }
 .fondo0{
   position: absolute;
@@ -68,8 +70,8 @@
   height:272px;
   border: solid;
   z-index: 1;
-  background:url(../img/parallax/1.png);
-  animation: fondo 5s steps(1500) infinite;
+  background:url(../img/parallax/0.png);
+  animation: fondo 5s linear infinite;
 }
   @keyframes playXrun {
     from {background-position-x: 0px;}
