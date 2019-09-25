@@ -30,7 +30,7 @@ import { SpriteSheet } from "./SpriteSheet.js";
 
     }
 
-    
+//cambiar fondo
     
     
 

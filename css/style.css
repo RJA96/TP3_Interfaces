@@ -7,26 +7,70 @@
     left: 5px;
   }
 .pj{
+  position: absolute;
     background:url(../img/run.png);
     width: 579px;
     height: 763px;
-    z-index: 2;
-    transform-origin: top;
-    transform: scale(0.15,0.15) translateX(-1600px) translateY(-1000px);;
-    animation: playXrun 0.5s steps(4) infinite, playYrun 2s steps(2) infinite;
+    z-index: 3;
+    transform: scale(0.1,0.1) translateX(-2000px) translateY(-1900px);;
+    animation: playXrun 0.5s steps(4) infinite, playYrun 1s steps(2) infinite;
 }
-  canvas {
-    top: 0;
-    left: 0;
-    border: 1px solid black;
-    z-index: 1;
-    width: 480px;
-    height: 270px;
-    z-index: 1;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
+.fondoback{
+  position: absolute;
+  top: 0px;
+  left: 30px;
+  width:592px; 
+  height:272px;
+  border: solid;
+  z-index:0;
+  background:url(../img/parallax/back.png);
+}
+.fondo3{
+  position: absolute;
+  top: 0px;
+  left: 30px;
+  width:592px; 
+  height:272px;
+  border: solid;
+  z-index: 1;
+  background:url(../img/parallax/3.png);
+  animation: fondo 24s steps(1500)infinite;
+
+}
+.fondo2{
+  position: absolute;
+  top: 0px;
+  left: 30px;
+  width:592px; 
+  height:272px;
+  border: solid;
+  z-index: 1;
+  background:url(../img/parallax/2.png);
+  animation: fondo 20s steps(1500)infinite;
+
+}
+.fondo1{
+  position: absolute;
+  top: 0px;
+  left: 30px;
+  width:592px; 
+  height:272px;
+  border: solid;
+  z-index: 1;
+  background:url(../img/parallax/1.png);
+  animation: fondo 5s steps(1500) infinite;
+}
+.fondo0{
+  position: absolute;
+  top: 0px;
+  left: 30px;
+  width:592px; 
+  height:272px;
+  border: solid;
+  z-index: 1;
+  background:url(../img/parallax/1.png);
+  animation: fondo 5s steps(1500) infinite;
+}
   @keyframes playXrun {
     from {background-position-x: 0px;}
     to {background-position-x: -2316px;}
@@ -34,4 +78,8 @@
   @keyframes playYrun {
     from {background-position-y: 0px;}
     to {background-position-y: -1526px;}
+  }
+  @keyframes fondo{
+    from {background-position-x: 0px;}
+    to {background-position-x: -592px;}
   }
