@@ -1,38 +1,35 @@
-import {
-    Juego
-} from "./Juego.js";
-import { SpriteSheet } from "./SpriteSheet.js";
-(function () {
-    const canvas = document.querySelector("#canvas");
-    const context = canvas.getContext("2d");
-    let game = new Juego(canvas, context);
-    //let sprite = new SpriteSheet(0,0,"img/pjcorriendo.png",816,164,5,2,context);
-    let requestAnimFrame = (function () {
-        return window.requestAnimationFrame ||
-            window.webkitRequestAnimationFrame ||
-            window.mozRequestAnimationFrame ||
-            window.oRequestAnimationFrame ||
-            window.msRequestAnimationFrame;
-    })();
 
-    function iniciar() {
-        game.añadricapa("img/background.png",1);
+//ID= requestanimationframe (gameloop)
+//cancelAnimationframe (ID)
+//INPUT-UPDATE-RENDER-CONDITIO-restart
+//gameloop eventos temporales
+let saltando = 0;
+let saltandob = true;
+let pj = document.querySelector(".pj");
 
-        animate()
-    }
-
-    function animate() {
-        requestAnimFrame(animate);
-        for (let i = 0; i < game.capas.length; i++) {
-            game.capas[i].draw();
+document.addEventListener('keydown', (event) => {
+    event.preventDefault()
+    if (event.code == 'KeyW') {
+        if ((saltando==0)&&(saltandob)) {
+            saltandob = false;
+            pj.style.top = -200+"px";
+            saltando++;
         }
-       // game.fondo.draw();
-
+        else{
+            pj.style.top = -160+"px";
+            saltando = 0;
+        }
     }
+  });
 
-//cambiar fondo
-    
-    
+  document.addEventListener('keyup', (event) => {
+    pj.style.top = -160+"px";
+    saltando = 0;
+    saltandob = true;
+    }
+  );
 
-    iniciar();
-})();
+function saltar(){
+    pj.style.top = -200+"px";
+    pj.backgroundImage= "url('../img/parallax/back.png')";
+}

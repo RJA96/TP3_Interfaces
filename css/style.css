@@ -9,8 +9,8 @@
 .pj{
     position: absolute;
     background:url(../img/run.png);
-      top: -160px;
-  left: -200px;
+    top: -160px;
+    left: -200px;
     width: 579px;
     height: 763px;
     z-index: 3;
@@ -60,7 +60,7 @@
   border: solid;
   z-index: 1;
   background:url(../img/parallax/1.png);
-  animation: fondo 5s linear infinite;
+  animation: fondo 6s linear infinite;
 }
 .fondo0{
   position: absolute;
@@ -71,7 +71,7 @@
   border: solid;
   z-index: 1;
   background:url(../img/parallax/0.png);
-  animation: fondo 5s linear infinite;
+  animation: fondo 6s linear infinite;
 }
   @keyframes playXrun {
     from {background-position-x: 0px;}
