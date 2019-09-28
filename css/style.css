@@ -141,20 +141,7 @@
     to {background-position-x: -440px;}
   }
   
-@keyframes npc-run-left{
-  0% {background-position: 0 100px;
-  }
-  25% {background-position: 600px 100px;
-  right: -65%}
-  50% {background-position: 0 100px;
-  right: -50%}
-  75% {background-position: 600px 100px;
-  right: -25%}
-  85% {background-position: 0 100px;
-  right: -15%}
-  100% {background-position: 600px 100px;
-  }   
-}
+
  @keyframes move{
    0% {
      transform:translateX(592px);
