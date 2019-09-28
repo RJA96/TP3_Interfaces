@@ -10,12 +10,22 @@
     position: absolute;
     background:url(../img/run.png);
     top: -160px;
-    left: -200px;
+    left: -180px;
     width: 579px;
     height: 763px;
     z-index: 3;
     transform: scale(0.12,0.12);
     animation: playXrun 0.5s steps(4) infinite, playYrun 1s steps(2) infinite;
+}
+.coin{
+  position: relative;
+  background:url(../img/coin.png);
+  top: 220px;
+  width: 44px;
+  height: 41.5px;
+  z-index: 3;
+  transform: scale(0.9,0.9);
+  animation: coin 0.5s steps(10) infinite, move 2s linear infinite;
 }
 .fondoback{
   position: absolute;
@@ -85,3 +95,47 @@
     from {background-position-x: 0px;}
     to {background-position-x: -592px;}
   }
+  @keyframes playXjump{
+    from{background-position-x:0}
+    to{background-position-x:-2895px}
+  }
+  @keyframes playYjump {
+    from {background-position-y: 763px;}
+    to {background-position-y: -1526px;}
+  }
+  @keyframes playXfall{
+    0%{background-position-x:0}
+    100%{background-position-x:-1972px}
+  }
+  @keyframes playYfall{
+    0%{background-position-y:0}
+    100%{background-position-y:-3980px}
+  }
+  @keyframes coin {
+    from {background-position-x: 0px;}
+    to {background-position-x: -440px;}
+  }
+  
+@keyframes npc-run-left{
+  0% {background-position: 0 100px;
+  }
+  25% {background-position: 600px 100px;
+  right: -65%}
+  50% {background-position: 0 100px;
+  right: -50%}
+  75% {background-position: 600px 100px;
+  right: -25%}
+  85% {background-position: 0 100px;
+  right: -15%}
+  100% {background-position: 600px 100px;
+  }   
+}
+ @keyframes move{
+   0% {
+     transform:translateX(592px);
+   }
+   100%{
+     transform: translateX(25px);
+   }
+
+ }
