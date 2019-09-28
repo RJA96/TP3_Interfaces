@@ -6,43 +6,25 @@ let saltando = 0;
 let saltandob = true;
 let pj = document.querySelector(".pj");
 let coin = document.querySelector(".coin");
-let fondo = document.querySelector(".fondo0")
+let fire = document.querySelector(".fire");
+let puntaje = document.querySelector("#puntos");
 let puntos = 0;
 let derrota = false;
 var requestId;
-//isCollide(pj.getBoundingClientRect(),coin.getBoundingClientRect())
-
-function loop(timestamp) {
-    if (!(isCollide(pj.getBoundingClientRect(), coin.getBoundingClientRect()))) {
+function loop() {
+    if (!(isCollide(pj.getBoundingClientRect(), fire.getBoundingClientRect()))) {
         puntos++;
-        console.log(puntos);
-
+        if (isCollide(pj.getBoundingClientRect(), coin.getBoundingClientRect())){
+            agarrarmoneda();
+        }
+        puntaje.innerHTML = "puntos: "+ puntos;
     } else {
         derrota = true;
-        console.log("out");
         gameover();
         return
     }
     window.requestAnimationFrame(loop)
 }
-window.requestAnimationFrame(loop);
-
-document.addEventListener('keydown', (event) => {
-    if (event.code == 'KeyW') {
-        if ((saltandob) && (!(derrota))) {
-
-            saltar();
-            saltandob = false;
-            caer();
-        } else {
-            pj.style.top = -160 + "px";
-        }
-    }
-});
-
-document.addEventListener('keyup', (event) => {
-    saltandob = true;
-});
 
 function saltar() {
     
@@ -55,12 +37,14 @@ function caer() {
     var caer = setTimeout(() => {
         pj.classList.remove("pjsaltando");
         pj.classList.add("pj");
-    }, 500);
+        coin.style.display = "block"
+    }, 550);
 }
 
 function gameover() {
     window.clearTimeout(caer);
     coin.style.display = "none";
+    fire.style.display = "none";
     pj.classList.remove("pj");
     pj.classList.add("pjmuerte");
     pj.addEventListener("animationend", function () {
@@ -68,6 +52,10 @@ function gameover() {
     })
 }
 
+function agarrarmoneda(){
+    puntos +=10;
+    coin.style.display = "none"
+}
 function isCollide(a, b) {
     return !(
         ((a.y + a.height) < (b.y)) ||
@@ -75,4 +63,56 @@ function isCollide(a, b) {
         ((a.x + a.width) < b.x) ||
         (a.x > (b.x + b.width))
     );
+}
+function animarFondos(){
+    let fondo0 = document.querySelector(".fondo0");
+    let fondo1 = document.querySelector(".fondo1");
+    let fondo2 = document.querySelector(".fondo2");
+    let fondo3 = document.querySelector(".fondo3");
+    fondo0.classList.add("fondo0animate");
+    fondo1.classList.add("fondo1animate");
+    fondo2.classList.add("fondo2animate");
+    fondo3.classList.add("fondo3animate");
+}
+function removeanmate(){
+    let fondo0 = document.querySelector(".fondo0");
+    let fondo1 = document.querySelector(".fondo1");
+    let fondo2 = document.querySelector(".fondo2");
+    let fondo3 = document.querySelector(".fondo3");
+    fondo0.classList.remove("fondo0animate");
+    fondo1.classList.remove("fondo1animate");
+    fondo2.classList.remove("fondo2animate");
+    fondo3.classList.remove("fondo3animate");
+}
+function animarnpc(){
+    let idle = document.querySelector(".pjidle");
+    pj.style.display = "block";
+    idle.style.display = "none";
+    coin.style.display = "block"
+    fire.style.display = "block";
+    coin.classList.add("coinanimation");
+    fire.classList.add("fireanimation");
+}
+function startGame(){
+    
+    window.requestAnimationFrame(loop);
+    animarFondos()
+    animarnpc()
+    document.addEventListener('keydown', (event) => {
+        if (event.code == 'KeyW') {
+            if ((saltandob) && (!(derrota))) {
+    
+                saltar();
+                saltandob = false;
+                caer();
+            } else {
+                pj.style.top = -160 + "px";
+            }
+        }
+    });
+
+    document.addEventListener('keyup', (event) => {
+        saltandob = true;
+    });
+    
 }
