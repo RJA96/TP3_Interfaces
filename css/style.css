@@ -17,6 +17,30 @@
     transform: scale(0.12,0.12);
     animation: playXrun 0.5s steps(4) infinite, playYrun 1s steps(2) infinite;
 }
+.pjsaltando{
+  position: absolute;
+  background:url(../img/salto.png);
+  top: -220px;
+  left: -180px;
+  width: 579px;
+  height: 763px;
+  z-index: 3;
+  transform: scale(0.12,0.12);
+  animation: playXjump 0.5s steps(5), playYjump 1s steps(1);
+}
+.pjmuerte{
+  position: relative;
+  background:url(../img/caida.png);
+  width: 986px;
+  top: -160px;
+    left: -360px;
+    height: 763px;
+    z-index: 3;
+    transform: scale(0.12,0.12);
+    animation-fill-mode: forwards;
+    animation-direction:normal;
+  animation: playXfall 1s steps(2) 1, playYfall 1s steps(5);
+}
 .coin{
   position: relative;
   background:url(../img/coin.png);
@@ -83,6 +107,7 @@
   background:url(../img/parallax/0.png);
   animation: fondo 6s linear infinite;
 }
+
   @keyframes playXrun {
     from {background-position-x: 0px;}
     to {background-position-x: -2316px;}
@@ -104,12 +129,12 @@
     to {background-position-y: -1526px;}
   }
   @keyframes playXfall{
-    0%{background-position-x:0}
-    100%{background-position-x:-1972px}
+    from{background-position-x:0}
+    to{background-position-x:-1972px}
   }
   @keyframes playYfall{
-    0%{background-position-y:0}
-    100%{background-position-y:-3980px}
+    from{background-position-y:0}
+    to{background-position-y:-3980px}
   }
   @keyframes coin {
     from {background-position-x: 0px;}
@@ -137,5 +162,4 @@
    100%{
      transform: translateX(25px);
    }
-
  }

@@ -13,26 +13,25 @@ var requestId;
 //isCollide(pj.getBoundingClientRect(),coin.getBoundingClientRect())
 
 function loop(timestamp) {
-if (!(isCollide(pj.getBoundingClientRect(),coin.getBoundingClientRect()))) {
+    if (!(isCollide(pj.getBoundingClientRect(), coin.getBoundingClientRect()))) {
         puntos++;
         console.log(puntos);
 
-}
-else{
-    derrota = true;
+    } else {
+        derrota = true;
         console.log("out");
         gameover();
-    return    
-}
+        return
+    }
     window.requestAnimationFrame(loop)
 }
 window.requestAnimationFrame(loop);
 
 document.addEventListener('keydown', (event) => {
     if (event.code == 'KeyW') {
-        if ((saltandob)&&(!(derrota))) {
-            
-                saltar();
+        if ((saltandob) && (!(derrota))) {
+
+            saltar();
             saltandob = false;
             caer();
         } else {
@@ -46,29 +45,27 @@ document.addEventListener('keyup', (event) => {
 });
 
 function saltar() {
-    pj.style.background = "url(../img/salto.png)";
-    pj.style.animation = "playXjump 0.5s steps(5), playYjump 1s steps(1)"
-        pj.style.top = -220 + "px";
+    
+    pj.classList.remove("pj");
+    pj.classList.add("pjsaltando");
 
 }
 
 function caer() {
-        setTimeout(() => {
-            pj.style.background = "url(../img/run.png)";
-        pj.style.animation ="playXrun 0.5s steps(4) infinite, playYrun 1s steps(2) infinite"
-    
-            pj.style.top = -160 + "px";
-    
-        }, 500); 
-      
+    var caer = setTimeout(() => {
+        pj.classList.remove("pjsaltando");
+        pj.classList.add("pj");
+    }, 500);
 }
 
-function gameover(){
-    stop();
+function gameover() {
+    window.clearTimeout(caer);
     coin.style.display = "none";
-    pj.style.background = "url(../img/caida.png)";
-    pj.style.width = "986px";
-    pj.style.animation ="playXfall 1s steps(2), playYfall 1s steps(5)"
+    pj.classList.remove("pj");
+    pj.classList.add("pjmuerte");
+    pj.addEventListener("animationend", function () {
+        pj.style.background = "url(../img/Dead.png)";
+    })
 }
 
 function isCollide(a, b) {
