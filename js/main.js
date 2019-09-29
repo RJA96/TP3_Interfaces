@@ -60,7 +60,7 @@ function gameover() {
     fire.style.display = "none";
     pj.classList.add("pjmuerte");
     pj.addEventListener("animationend", function () {
-        pj.style.background = "url(../img/Dead.png)";
+        pj.style.background = "url(img/Dead.png)";
         document.querySelector(".gameover").style.display = "inline"
         removeanmate()
     })
