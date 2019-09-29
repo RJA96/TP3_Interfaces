@@ -8,7 +8,6 @@
     z-index: 3;
     transform: scale(0.12, 0.12);
     animation: playXrun 0.5s steps(4) infinite, playYrun 1s steps(2) infinite;
-    display: none;
 }
 
 .pjsaltando {
@@ -42,7 +41,7 @@
     top: -160px;
     left: -180px;
 
-    background: url(../img/idleb.png);
+    background: url(../img/idle.png);
     width: 579px;
     height: 763px;
     z-index: 3;

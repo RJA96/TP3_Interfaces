@@ -107,9 +107,7 @@ function removeanmate() {
 }
 
 function animarnpc() {
-    let idle = document.querySelector(".pjidle");
-    pj.style.display = "block";
-    idle.style.display = "none";
+
     coin.style.display = "block"
     fire.style.display = "block";
     coin.classList.add("coinanimation");
