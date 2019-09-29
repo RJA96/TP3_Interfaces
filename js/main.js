@@ -1,12 +1,12 @@
-document.querySelector(".play").addEventListener("click", function(){
+document.querySelector(".play").addEventListener("click", function () {
     startGame();
     document.querySelector(".play").style.display = "none"
 });
+document.querySelector(".restart").addEventListener("click", function () {
+    location.reload();
+});
 
-//ID= requestanimationframe (gameloop)
-//cancelAnimationframe (ID)
-//INPUT-UPDATE-RENDER-CONDITIO-restart
-//gameloop eventos temporales
+
 let saltando = 0;
 let saltandob = true;
 let pj = document.querySelector(".pj");
@@ -16,17 +16,18 @@ let puntaje = document.querySelector("#puntos");
 let puntos = 0;
 let derrota = false;
 var requestId;
+
 function loop() {
-    if (puntos >= 1000){
-        gamewin()
+    if (puntos >= 1000) {
+        gameover(true)
         return
     }
     if (!(isCollide(pj.getBoundingClientRect(), fire.getBoundingClientRect()))) {
         puntos++;
-        if (isCollide(pj.getBoundingClientRect(), coin.getBoundingClientRect())){
+        if (isCollide(pj.getBoundingClientRect(), coin.getBoundingClientRect())) {
             agarrarmoneda();
         }
-        puntaje.innerHTML = "puntos: "+ puntos+" /1000";
+        puntaje.innerHTML = "puntos: " + puntos + " /1000";
     } else {
         derrota = true;
         gameover();
@@ -45,31 +46,35 @@ function caer() {
         coin.style.display = "block"
     }, 550);
 }
-function gamewin(){
+
+function gameover(win) {
     window.clearTimeout(caer);
     coin.style.display = "none";
     fire.style.display = "none";
-    pj.classList.add("pjidle");
-    removeanmate();
-    document.querySelector(".gameover").innerHTML = "YOU WIN";
-    document.querySelector(".gameover").style.display = "inline"
-}
-function gameover() {
-    window.clearTimeout(caer);
-    coin.style.display = "none";
-    fire.style.display = "none";
-    pj.classList.add("pjmuerte");
-    pj.addEventListener("animationend", function () {
-        pj.style.background = "url(img/Dead.png)";
+    if (win) {
+        pj.classList.add("pjidle");
+        removeanmate();
+        document.querySelector(".gameover").innerHTML = "YOU WIN";
         document.querySelector(".gameover").style.display = "inline"
-        removeanmate()
-    })
+        document.querySelector(".restart").style.display = "block"
+    } else {
+        pj.classList.add("pjmuerte");
+        pj.addEventListener("animationend", function () {
+            pj.style.background = "url(img/Dead.png)";
+            document.querySelector(".gameover").style.display = "inline"
+            removeanmate()
+            document.querySelector(".restart").style.display = "block"
+        })
+    }
+
+
 }
 
-function agarrarmoneda(){
-    puntos +=10;
+function agarrarmoneda() {
+    puntos += 30;
     coin.style.display = "none"
 }
+
 function isCollide(a, b) {
     return !(
         ((a.y + a.height) < (b.y)) ||
@@ -78,7 +83,8 @@ function isCollide(a, b) {
         (a.x > (b.x + b.width))
     );
 }
-function animarFondos(){
+
+function animarFondos() {
     let fondo0 = document.querySelector(".fondo0");
     let fondo1 = document.querySelector(".fondo1");
     let fondo2 = document.querySelector(".fondo2");
@@ -88,7 +94,8 @@ function animarFondos(){
     fondo2.classList.add("fondo2animate");
     fondo3.classList.add("fondo3animate");
 }
-function removeanmate(){
+
+function removeanmate() {
     let fondo0 = document.querySelector(".fondo0");
     let fondo1 = document.querySelector(".fondo1");
     let fondo2 = document.querySelector(".fondo2");
@@ -98,7 +105,8 @@ function removeanmate(){
     fondo2.classList.remove("fondo2animate");
     fondo3.classList.remove("fondo3animate");
 }
-function animarnpc(){
+
+function animarnpc() {
     let idle = document.querySelector(".pjidle");
     pj.style.display = "block";
     idle.style.display = "none";
@@ -107,7 +115,14 @@ function animarnpc(){
     coin.classList.add("coinanimation");
     fire.classList.add("fireanimation");
 }
-function startGame(){
+
+function startGame() {
+    derrota = false;
+    saltandob = true;
+    document.querySelector(".gameover").style.display = "none"
+    pj.classList.remove("pjmuerte");
+    pj.classList.remove("pjidle");
+    pj.style.background = "";
     window.requestAnimationFrame(loop);
     animarFondos()
     animarnpc()
