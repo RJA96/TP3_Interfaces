@@ -36,14 +36,12 @@ function loop() {
 }
 
 function saltar() {
-    pj.classList.remove("pj");
     pj.classList.add("pjsaltando");
 }
 
 function caer() {
     var caer = setTimeout(() => {
         pj.classList.remove("pjsaltando");
-        pj.classList.add("pj");
         coin.style.display = "block"
     }, 550);
 }
@@ -51,7 +49,6 @@ function gamewin(){
     window.clearTimeout(caer);
     coin.style.display = "none";
     fire.style.display = "none";
-    pj.classList.remove("pj");
     pj.classList.add("pjidle");
     removeanmate();
     document.querySelector(".gameover").innerHTML = "YOU WIN";
@@ -61,7 +58,6 @@ function gameover() {
     window.clearTimeout(caer);
     coin.style.display = "none";
     fire.style.display = "none";
-    pj.classList.remove("pj");
     pj.classList.add("pjmuerte");
     pj.addEventListener("animationend", function () {
         pj.style.background = "url(../img/Dead.png)";
