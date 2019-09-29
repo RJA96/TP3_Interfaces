@@ -1,3 +1,8 @@
+document.querySelector(".play").addEventListener("click", function(){
+    startGame();
+    document.querySelector(".play").style.display = "none"
+});
+
 //ID= requestanimationframe (gameloop)
 //cancelAnimationframe (ID)
 //INPUT-UPDATE-RENDER-CONDITIO-restart
@@ -12,12 +17,16 @@ let puntos = 0;
 let derrota = false;
 var requestId;
 function loop() {
+    if (puntos >= 1000){
+        gamewin()
+        return
+    }
     if (!(isCollide(pj.getBoundingClientRect(), fire.getBoundingClientRect()))) {
         puntos++;
         if (isCollide(pj.getBoundingClientRect(), coin.getBoundingClientRect())){
             agarrarmoneda();
         }
-        puntaje.innerHTML = "puntos: "+ puntos;
+        puntaje.innerHTML = "puntos: "+ puntos+" /1000";
     } else {
         derrota = true;
         gameover();
@@ -27,10 +36,8 @@ function loop() {
 }
 
 function saltar() {
-    
     pj.classList.remove("pj");
     pj.classList.add("pjsaltando");
-
 }
 
 function caer() {
@@ -40,7 +47,16 @@ function caer() {
         coin.style.display = "block"
     }, 550);
 }
-
+function gamewin(){
+    window.clearTimeout(caer);
+    coin.style.display = "none";
+    fire.style.display = "none";
+    pj.classList.remove("pj");
+    pj.classList.add("pjidle");
+    removeanmate();
+    document.querySelector(".gameover").innerHTML = "YOU WIN";
+    document.querySelector(".gameover").style.display = "inline"
+}
 function gameover() {
     window.clearTimeout(caer);
     coin.style.display = "none";
@@ -49,6 +65,8 @@ function gameover() {
     pj.classList.add("pjmuerte");
     pj.addEventListener("animationend", function () {
         pj.style.background = "url(../img/Dead.png)";
+        document.querySelector(".gameover").style.display = "inline"
+        removeanmate()
     })
 }
 
@@ -94,14 +112,12 @@ function animarnpc(){
     fire.classList.add("fireanimation");
 }
 function startGame(){
-    
     window.requestAnimationFrame(loop);
     animarFondos()
     animarnpc()
     document.addEventListener('keydown', (event) => {
         if (event.code == 'KeyW') {
             if ((saltandob) && (!(derrota))) {
-    
                 saltar();
                 saltandob = false;
                 caer();
@@ -110,9 +126,7 @@ function startGame(){
             }
         }
     });
-
     document.addEventListener('keyup', (event) => {
         saltandob = true;
     });
-    
 }
